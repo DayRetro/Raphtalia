@@ -1,0 +1,58 @@
+#
+# These things are run when an Openbox X Session is started.
+# You may place a similar script in $HOME/.config/openbox/autostart
+# to run user-specific things.
+#
+
+# If you want to use GNOME config tools...
+#
+#if test -x /usr/lib/x86_64-linux-gnu/gnome-settings-daemon >/dev/null; then
+#  /usr/lib/x86_64-linux-gnu/gnome-settings-daemon &
+#elif which gnome-settings-daemon >/dev/null 2>&1; then
+#  gnome-settings-daemon &
+#fi
+
+# If you want to use XFCE config tools...
+#
+#xfce-mcs-manager &
+
+# sonido de inicio
+mpg123 -q /home/dayretro/.archivosinicio/startup/ps1startup.mp3 &
+
+# Polkit
+#if [ -x "$(command -v apt)" ]; then
+#  if ! pgrep -af polkit-gnome-authentication-agent-1 > /dev/null; then /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & fi
+#elif [ -x "$(command -v pacman)" ]; then
+#  if ! pgrep -af polkit-gnome-authentication-agent-1 > /dev/null; then /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & fi
+#fi
+
+lxpolkit &
+
+#pipewire
+/bin/pipewire &
+/bin/pipewire-pulse &
+/bin/wireplumber &
+
+# alttab (cambia la forma de seleccionar)
+
+alttab &
+
+# pantalla
+sh /home/dayretro/.archivosinicio/pantalla/sony.sh &
+
+# Wallpaper
+nitrogen --restore &
+
+#flatpak run io.github.jeffshee.Hidamari &
+
+# Picom
+picom &
+
+# Polybar
+polybar -c .config/polybar/murz/config.ini &
+
+# Plank
+plank &
+
+# conky
+sh .config/conky/launch.sh &
